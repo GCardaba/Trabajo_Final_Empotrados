@@ -19,7 +19,7 @@ El objetivo principal es demostrar cómo integrar hardware y software en un sist
 * [Materiales](#materiales)
 * [Diagrama de Conexiones](#diagrama-de-conexiones)
 * [Instalación](#instalación)
-* [Uso](##uso)
+* [Uso](#uso)
 * [Capturas](#capturas)
 
 ---
