@@ -65,6 +65,12 @@ void checkWiFi() {
 
 // Página web prueba
 String getPage(float h, float t) {
+  bool ledState = digitalRead(Led_B); // Leer estado actual del LED
+
+  String btnLabel = ledState ? "Apagar LED" : "Encender LED";
+  String btnClass = ledState ? "off" : "on";
+  String btnColor = ledState ? "linear-gradient(135deg,#f44336,#d32f2f)" : "linear-gradient(135deg,#4caf50,#66bb6a)";
+
   String html = R"rawliteral(
   <!DOCTYPE html>
   <html lang="es">
@@ -88,7 +94,6 @@ String getPage(float h, float t) {
   .card-unit {color:#999; font-size:1em;}
   .led-control {background:white; border-radius:15px; padding:25px; box-shadow:0 8px 20px rgba(0,0,0,0.15); text-align:center;}
   .led-button {width:100%; padding:20px; font-size:1.3em; font-weight:bold; border:none; border-radius:10px; cursor:pointer; text-transform:uppercase; letter-spacing:2px;}
-  .led-button.on {background:linear-gradient(135deg,#4caf50,#66bb6a); color:white; border:3px solid #2e7d32;}
   </style>
   </head>
   <body>
@@ -103,10 +108,10 @@ String getPage(float h, float t) {
   <div class="card-icon">🌡️</div>
   <div class="card-label">Temperatura</div>
   <div class="card-value">)rawliteral";
-    
-    html += String(t);
-    
-    html += R"rawliteral(</div>
+
+  html += String(t);
+
+  html += R"rawliteral(</div>
   <div class="card-unit">°C</div>
   </div>
 
@@ -114,24 +119,36 @@ String getPage(float h, float t) {
   <div class="card-icon">💧</div>
   <div class="card-label">Humedad</div>
   <div class="card-value">)rawliteral";
-    
-    html += String(h);
-    
-    html += R"rawliteral(</div>
+
+  html += String(h);
+
+  html += R"rawliteral(</div>
   <div class="card-unit">%</div>
   </div>
   </div>
   <div class="led-control">
-    <a href="/led/on"><button class="led-button on">Encender LED</button></a>
-    <a href="/led/off"><button class="led-button off">Apagar LED</button></a>
+    <a href=")rawliteral";
+
+  html += ledState ? "/led/off" : "/led/on";
+
+  html += R"rawliteral("><button class="led-button" style="background:)rawliteral";
+
+  html += btnColor;
+
+  html += R"rawliteral(">)rawliteral";
+
+  html += btnLabel;
+
+  html += R"rawliteral(</button></a>
   </div>
   </div>
   </body>
   </html>
   )rawliteral";
 
-    return html;
+  return html;
 }
+
 
 void handleRoot() {
   server.send(200, "text/html", getPage(humedad, temperatura));
@@ -153,7 +170,7 @@ void handleLedOff() {
 void wifiCallback(WiFiEvent_t event) {
   switch (event) {
     case ARDUINO_EVENT_WIFI_STA_CONNECTED:
-      Serial.println("Conectado ");
+      Serial.print("Conectado ");
       Serial.println(WIFI_SSID);
       break;
     case ARDUINO_EVENT_WIFI_STA_GOT_IP:
