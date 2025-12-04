@@ -62,7 +62,7 @@ git clone https://github.com/Pabl0t0rr/Trabajo_Final_Empotrados.git
    * `DHT sensor library`
    * `WiFi`
    * `WebServer`
-   * #include "Ticker"
+   * `Ticker`
 
 4. Configurar tu **SSID** y **password** de Wi-Fi en el código.
 5. Compilar y subir el código a tu ESP32-S3.
@@ -91,6 +91,7 @@ git clone https://github.com/Pabl0t0rr/Trabajo_Final_Empotrados.git
 <div align="center">
   <img src="https://raw.githubusercontent.com/Pabl0t0rr/Trabajo_Final_Empotrados/main/assets/Interfaz_Final.png" width="500" />
 </div>
+
 *Interfaz web para visualizar y controlar la placa.*
 
 
