@@ -46,17 +46,7 @@ El objetivo principal es demostrar cómo integrar hardware y software en un sist
 
 ## Diagrama de Conexiones
 
-```
-ESP32-S3       DHT22       LED_T         LED_H       LED_B
---------      -------     -------       -------     --------
-GPIO4  -------- DATA
-GND    -------- GND        GND
-3V3    -------- VCC
-GPIO7 ------------------- Anodo (+) LED_B
-GPIO8 ------------------- Anodo (+) LED_T
-GPIO10 ------------------ Anodo (+) LED_H
-GND    ------------------ Catodo LED (-) con resistencia
-```
+<img width="943" height="609" alt="image" src="https://github.com/user-attachments/assets/140e489d-b565-4780-b12f-01ccf3d87f8c" />
 
 ## Instalación
 
